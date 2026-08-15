@@ -42,9 +42,9 @@ export function NeuralBackground({ className = "" }: { className?: string }) {
       }
       for (let i = 0; i < nodes.length; i++) {
         for (let j = i + 1; j < nodes.length; j++) {
-          const a = nodes[i];
-          const b = nodes[j];
-          const d = Math.hypot(a.x - b.x, a.y - b.y);
+          const a = nodes[i]!;
+          const b = nodes[j]!;
+
           if (d < 130) {
             ctx.strokeStyle = `rgba(56, 232, 189, ${(1 - d / 130) * 0.28})`;
             ctx.lineWidth = 1;
