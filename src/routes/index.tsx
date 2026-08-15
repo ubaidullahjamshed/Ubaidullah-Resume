@@ -37,7 +37,7 @@ export const Route = createFileRoute("/")({
       {
         property: "og:description",
         content:
-          "Education, skills, projects and gallery of Ubaidullah Jamshed — available for website development work.",
+          "Resume and portfolio of Ubaidullah Jamshed, a web developer from Lahore building fast, modern, responsive websites.",
       },
       { property: "og:type", content: "profile" },
       { name: "twitter:card", content: "summary_large_image" },

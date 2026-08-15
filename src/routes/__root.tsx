@@ -77,14 +77,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Ubaidullah's Resume" },
-      { name: "description", content: "Website resume and portfolio of Ubaidullah Jamshed, web developer." },
+      { title: "Ubaidullah Jamshed — Web Developer Resume" },
+      { name: "description", content: "Resume and portfolio of Ubaidullah Jamshed, a web developer from Lahore building fast, modern, responsive websites." },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Ubaidullah's Resume" },
-      { property: "og:description", content: "Website resume and portfolio of Ubaidullah Jamshed, web developer." },
+      { property: "og:title", content: "Ubaidullah Jamshed — Web Developer Resume" },
+      { property: "og:description", content: "Resume and portfolio of Ubaidullah Jamshed, a web developer from Lahore building fast, modern, responsive websites." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "Ubaidullah Jamshed — Web Developer Resume" },
+      { name: "twitter:description", content: "Resume and portfolio of Ubaidullah Jamshed, a web developer from Lahore building fast, modern, responsive websites." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/621cb67a-1abc-45bc-9e52-ec44b87a1966" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/621cb67a-1abc-45bc-9e52-ec44b87a1966" },
     ],
     links: [
       {
