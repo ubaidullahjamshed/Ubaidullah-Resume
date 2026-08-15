@@ -150,34 +150,12 @@ function Index() {
                 >
                   <Download className="h-4 w-4" /> Download CV
                 </a>
-                <a
-                  href="https://hu-devs.netlify.app/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm font-semibold transition-colors hover:border-primary hover:text-primary"
-                >
-                  View sample project <ExternalLink className="h-4 w-4" />
-                </a>
               </div>
             </Reveal>
           </div>
         </section>
 
-        {/* Marquee */}
-        <section className="border-y border-border/60 bg-card/30 py-5">
-          <div className="flex w-full overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_12%,black_88%,transparent)]">
-            <div className="animate-marquee flex shrink-0 gap-4 pr-4">
-              {[...marqueeItems, ...marqueeItems].map((item, i) => (
-                <span
-                  key={`${item}-${i}`}
-                  className="glass-card rounded-full px-6 py-2 text-sm font-semibold whitespace-nowrap text-muted-foreground"
-                >
-                  {item}
-                </span>
-              ))}
-            </div>
-          </div>
-        </section>
+
 
         {/* Education */}
         <section id="education" className="px-4 py-16 sm:py-20">
