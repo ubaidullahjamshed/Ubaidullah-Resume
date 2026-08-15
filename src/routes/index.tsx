@@ -79,7 +79,10 @@ const socials = [
 ];
 
 function Index() {
+  const [lightbox, setLightbox] = useState<number | null>(null);
+
   return (
+
     <main className="relative min-h-screen overflow-x-hidden bg-background text-foreground">
       <NeuralBackground className="pointer-events-none fixed inset-0 z-0 h-full w-full opacity-70" />
 
