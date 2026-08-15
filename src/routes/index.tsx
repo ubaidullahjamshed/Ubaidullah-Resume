@@ -434,8 +434,9 @@ function Index() {
               <ChevronRight className="h-5 w-5" />
             </button>
             <img
-              src={gallery[lightbox].src}
-              alt={gallery[lightbox].alt}
+              src={gallery[lightbox]!.src}
+              alt={gallery[lightbox]!.alt}
+
               onClick={(e) => e.stopPropagation()}
               className="animate-rise max-h-[85vh] max-w-full rounded-2xl border border-border object-contain"
             />
