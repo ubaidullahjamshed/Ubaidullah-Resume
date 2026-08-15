@@ -295,18 +295,24 @@ function Index() {
             <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
               {gallery.map((img, i) => (
                 <Reveal key={img.src} delay={i * 90}>
-                  <figure className="group relative overflow-hidden rounded-2xl border border-border">
+                  <button
+                    type="button"
+                    onClick={() => setLightbox(i)}
+                    aria-label={`Open image: ${img.alt}`}
+                    className="group relative block w-full cursor-zoom-in overflow-hidden rounded-2xl border border-border focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                  >
                     <img
                       src={img.src}
                       alt={img.alt}
                       loading="lazy"
                       className="h-56 w-full object-cover transition-transform duration-500 group-hover:scale-110 sm:h-64"
                     />
-                    <figcaption className="absolute inset-0 bg-gradient-to-t from-background/85 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                  </figure>
+                    <span className="absolute inset-0 bg-gradient-to-t from-background/85 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                  </button>
                 </Reveal>
               ))}
             </div>
+
           </div>
         </section>
 
