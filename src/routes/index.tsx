@@ -54,18 +54,7 @@ const gallery = [
   { src: g5.url, alt: "Ubaidullah in formal wear at Pearl-Continental Lahore" },
 ];
 
-const marqueeItems = [
-  "React",
-  "TypeScript",
-  "Tailwind CSS",
-  "Next.js",
-  "Node.js",
-  "Supabase",
-  "Netlify",
-  "Figma",
-  "Vite",
-  "Git",
-];
+
 
 const socials = [
   {
