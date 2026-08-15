@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
 import {
   Download,
   Mail,
@@ -8,7 +9,11 @@ import {
   Code2,
   Sparkles,
   MessageCircle,
+  X,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
+
 
 import { NeuralBackground } from "@/components/NeuralBackground";
 import { Reveal } from "@/components/Reveal";
