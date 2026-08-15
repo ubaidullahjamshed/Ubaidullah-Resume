@@ -388,7 +388,56 @@ function Index() {
         >
           <MessageCircle className="h-6 w-6" />
         </a>
+
+        {/* Lightbox */}
+        {lightbox !== null && (
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-label="Image preview"
+            onClick={() => setLightbox(null)}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-background/90 p-4 backdrop-blur-sm"
+          >
+            <button
+              type="button"
+              aria-label="Close image preview"
+              onClick={() => setLightbox(null)}
+              className="absolute top-4 right-4 grid h-10 w-10 place-items-center rounded-full border border-border bg-card/80 text-foreground transition-colors hover:text-primary"
+            >
+              <X className="h-5 w-5" />
+            </button>
+            <button
+              type="button"
+              aria-label="Previous image"
+              onClick={(e) => {
+                e.stopPropagation();
+                setLightbox((p) => ((p ?? 0) - 1 + gallery.length) % gallery.length);
+              }}
+              className="absolute left-2 grid h-10 w-10 place-items-center rounded-full border border-border bg-card/80 transition-colors hover:text-primary sm:left-6"
+            >
+              <ChevronLeft className="h-5 w-5" />
+            </button>
+            <button
+              type="button"
+              aria-label="Next image"
+              onClick={(e) => {
+                e.stopPropagation();
+                setLightbox((p) => ((p ?? 0) + 1) % gallery.length);
+              }}
+              className="absolute right-2 grid h-10 w-10 place-items-center rounded-full border border-border bg-card/80 transition-colors hover:text-primary sm:right-6"
+            >
+              <ChevronRight className="h-5 w-5" />
+            </button>
+            <img
+              src={gallery[lightbox].src}
+              alt={gallery[lightbox].alt}
+              onClick={(e) => e.stopPropagation()}
+              className="animate-rise max-h-[85vh] max-w-full rounded-2xl border border-border object-contain"
+            />
+          </div>
+        )}
       </div>
     </main>
   );
 }
+
