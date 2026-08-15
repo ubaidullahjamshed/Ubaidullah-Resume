@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
 import {
   Download,
   Mail,
@@ -8,7 +9,11 @@ import {
   Code2,
   Sparkles,
   MessageCircle,
+  X,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
+
 
 import { NeuralBackground } from "@/components/NeuralBackground";
 import { Reveal } from "@/components/Reveal";
@@ -49,18 +54,7 @@ const gallery = [
   { src: g5.url, alt: "Ubaidullah in formal wear at Pearl-Continental Lahore" },
 ];
 
-const marqueeItems = [
-  "React",
-  "TypeScript",
-  "Tailwind CSS",
-  "Next.js",
-  "Node.js",
-  "Supabase",
-  "Netlify",
-  "Figma",
-  "Vite",
-  "Git",
-];
+
 
 const socials = [
   {
@@ -74,7 +68,10 @@ const socials = [
 ];
 
 function Index() {
+  const [lightbox, setLightbox] = useState<number | null>(null);
+
   return (
+
     <main className="relative min-h-screen overflow-x-hidden bg-background text-foreground">
       <NeuralBackground className="pointer-events-none fixed inset-0 z-0 h-full w-full opacity-70" />
 
@@ -142,34 +139,12 @@ function Index() {
                 >
                   <Download className="h-4 w-4" /> Download CV
                 </a>
-                <a
-                  href="https://hu-devs.netlify.app/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm font-semibold transition-colors hover:border-primary hover:text-primary"
-                >
-                  View sample project <ExternalLink className="h-4 w-4" />
-                </a>
               </div>
             </Reveal>
           </div>
         </section>
 
-        {/* Marquee */}
-        <section className="border-y border-border/60 bg-card/30 py-5">
-          <div className="flex w-full overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_12%,black_88%,transparent)]">
-            <div className="animate-marquee flex shrink-0 gap-4 pr-4">
-              {[...marqueeItems, ...marqueeItems].map((item, i) => (
-                <span
-                  key={`${item}-${i}`}
-                  className="glass-card rounded-full px-6 py-2 text-sm font-semibold whitespace-nowrap text-muted-foreground"
-                >
-                  {item}
-                </span>
-              ))}
-            </div>
-          </div>
-        </section>
+
 
         {/* Education */}
         <section id="education" className="px-4 py-16 sm:py-20">
@@ -295,18 +270,24 @@ function Index() {
             <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
               {gallery.map((img, i) => (
                 <Reveal key={img.src} delay={i * 90}>
-                  <figure className="group relative overflow-hidden rounded-2xl border border-border">
+                  <button
+                    type="button"
+                    onClick={() => setLightbox(i)}
+                    aria-label={`Open image: ${img.alt}`}
+                    className="group relative block w-full cursor-zoom-in overflow-hidden rounded-2xl border border-border focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                  >
                     <img
                       src={img.src}
                       alt={img.alt}
                       loading="lazy"
                       className="h-56 w-full object-cover transition-transform duration-500 group-hover:scale-110 sm:h-64"
                     />
-                    <figcaption className="absolute inset-0 bg-gradient-to-t from-background/85 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                  </figure>
+                    <span className="absolute inset-0 bg-gradient-to-t from-background/85 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                  </button>
                 </Reveal>
               ))}
             </div>
+
           </div>
         </section>
 
@@ -382,7 +363,57 @@ function Index() {
         >
           <MessageCircle className="h-6 w-6" />
         </a>
+
+        {/* Lightbox */}
+        {lightbox !== null && (
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-label="Image preview"
+            onClick={() => setLightbox(null)}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-background/90 p-4 backdrop-blur-sm"
+          >
+            <button
+              type="button"
+              aria-label="Close image preview"
+              onClick={() => setLightbox(null)}
+              className="absolute top-4 right-4 grid h-10 w-10 place-items-center rounded-full border border-border bg-card/80 text-foreground transition-colors hover:text-primary"
+            >
+              <X className="h-5 w-5" />
+            </button>
+            <button
+              type="button"
+              aria-label="Previous image"
+              onClick={(e) => {
+                e.stopPropagation();
+                setLightbox((p) => ((p ?? 0) - 1 + gallery.length) % gallery.length);
+              }}
+              className="absolute left-2 grid h-10 w-10 place-items-center rounded-full border border-border bg-card/80 transition-colors hover:text-primary sm:left-6"
+            >
+              <ChevronLeft className="h-5 w-5" />
+            </button>
+            <button
+              type="button"
+              aria-label="Next image"
+              onClick={(e) => {
+                e.stopPropagation();
+                setLightbox((p) => ((p ?? 0) + 1) % gallery.length);
+              }}
+              className="absolute right-2 grid h-10 w-10 place-items-center rounded-full border border-border bg-card/80 transition-colors hover:text-primary sm:right-6"
+            >
+              <ChevronRight className="h-5 w-5" />
+            </button>
+            <img
+              src={gallery[lightbox]!.src}
+              alt={gallery[lightbox]!.alt}
+
+              onClick={(e) => e.stopPropagation()}
+              className="animate-rise max-h-[85vh] max-w-full rounded-2xl border border-border object-contain"
+            />
+          </div>
+        )}
       </div>
     </main>
   );
 }
+
